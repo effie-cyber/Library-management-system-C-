@@ -1,0 +1,1389 @@
+#include <iostream>
+#include <windows.h>
+#include<string>
+
+#include <fstream>
+
+/*Here's the list of color numbers and their corresponding meanings:(available due to windows library.)
+0: Black
+1: Blue
+2: Green
+3: Aqua (Cyan)
+4: Red
+5: Magenta
+6: Yellow
+7: White
+8: Gray
+9: Bright Blue
+10: Bright Green
+11: Bright Cyan
+12: Bright Red
+13: Bright Magenta
+14: Bright Yellow
+15: Bright White*/
+
+
+
+using namespace std;
+
+
+
+void SetConsoleColor(int bgColor, int textColor) {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, (bgColor << 4) | textColor);
+}
+
+// Function to center text in the console
+string text;
+void PrintCentered(string text) {
+
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+
+	int consoleWidth = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	int textLength = text.length();
+	int spaces = (consoleWidth - textLength) / 2;
+
+	// Move the cursor to the center and print the text
+	for (int i = 0; i < spaces; i++)
+		cout << " ";
+	cout << text << endl;
+}
+void Greeting() {
+	//This function displays the following two statements, that are displayed using print centered,thus displaying them in the center of the console
+	PrintCentered("Welcome,fellow reader!");
+	PrintCentered("Ready to embark on a reading journey!");
+
+
+}
+void Pick() {
+	//This function displays the genres and gives the users options to pick from 
+	PrintCentered("The availabel genres are:");
+	PrintCentered("1.Classics/Childrens  2.Thriller/Horror    3.Romance/YA fantasy ");
+	PrintCentered("Pick from the following available genres");
+
+}
+void Choice() {
+	//This function  displays the booklist from the genre the user picked 
+	string genre;
+	cin >> genre;
+	PrintCentered("genre");
+	if (genre == "1") {
+		SetConsoleColor(6, 1); //This is to set the background color(6) and the text color(1) 
+		system("cls"); //This makes sure that the background color is applied to the whole of the console and not just the background of the text.
+		//apply genre appropiate colors u can do this
+		PrintCentered("Available options of books for your picked genre is:");
+		PrintCentered("1.Fires Burning Underground");
+		PrintCentered("2.Tori and the Muses");
+		PrintCentered("3.Why Not, Lafayette?");
+		PrintCentered("4.Winter Turning (Wings of Fire Graphic Novel, #7)");
+		PrintCentered("5.Salt in His Shoes: Michael Jordan in Pursuit of a Dream");
+		PrintCentered("6.Thanks for the Feeback…(I Think) (Best Me I Can Be) ");
+		PrintCentered("7.Mistakes That Worked: 40 Familiar Inventions and How They Came to Be ");
+		PrintCentered("8. Scavengers (Diary of a 6th Grade Ninja, #7)");
+		PrintCentered("9.How to See Fairies");
+		PrintCentered("10. Dear Pope Francis: The Pope Answers Letters from Children Around the World");
+		PrintCentered("11.Thief! by Malorie Blackman");
+		PrintCentered("12.Sierra Jensen Collection Volume 4: Books 10-12: Hold on Tight Closer Than Ever Take My Hand by Robin Jones Gunn (2007-02-10)");
+		PrintCentered("13.Rosa by Elaine Cunningham");
+		PrintCentered("14.The Tale of Mrs. Tiggy-Winkle (World of Beatrix Potter, #6)");
+		PrintCentered("15.Pastures Of The Blue Crane by Hesba Fay Brinsmead");
+		PrintCentered("16.An Evening at Alfie’s");
+		PrintCentered("17.Minnow on the Say");
+		PrintCentered("18.What Katy Did Next");
+		PrintCentered("19.In the High Valley");
+		PrintCentered("20.Pastures Of The Blue Crane by H.F. Brinsmead");
+		PrintCentered("21.Tim to the Rescue");
+
+
+
+
+
+		//And then asks the user to enter the book number according to the list displayed, after the user enters the book number it displays the link 
+		//of the pdf of the book the user chose.The link is then saved to a text file named link.
+		PrintCentered("Pick a book from the list and write down the number");
+		string book;
+		cin >> book;
+		if (book == "1") {
+			PrintCentered("The title:Fires Burning Underground ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/nancy-mccabe/pdf-epub-fires-burning-underground-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << " https://oceanofpdf.com/authors/nancy-mccabe/pdf-epub-fires-burning-underground-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "2") {
+			PrintCentered("The title:Tori and the Muses             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/tori-amos/pdf-epub-tori-and-the-muses-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/tori-amos/pdf-epub-tori-and-the-muses-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "3") {
+			PrintCentered("The title:Why Not, Lafayette?             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/jean-fritz/pdf-why-not-lafayette-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/jean-fritz/pdf-why-not-lafayette-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "4") {
+			PrintCentered("The title: Winter Turning (Wings of Fire Graphic Novel, #7)            ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/tui-t-sutherland/pdf-winter-turning-wings-of-fire-graphic-novel-7-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/tui-t-sutherland/pdf-winter-turning-wings-of-fire-graphic-novel-7-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "5") {
+			PrintCentered("The title:Salt in His Shoes: Michael Jordan in Pursuit of a Dream            ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/deloris-jordan/pdf-salt-in-his-shoes-michael-jordan-in-pursuit-of-a-dream-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << " https://oceanofpdf.com/authors/deloris-jordan/pdf-salt-in-his-shoes-michael-jordan-in-pursuit-of-a-dream-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "6") {
+			PrintCentered("The title:Winter Turning (Wings of Fire Graphic Novel, #7)            ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/tui-t-sutherland/pdf-winter-turning-wings-of-fire-graphic-novel-7-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << " https://oceanofpdf.com/authors/tui-t-sutherland/pdf-winter-turning-wings-of-fire-graphic-novel-7-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "7") {
+			PrintCentered("The title:Mistakes That Worked: 40 Familiar Inventions and How They Came to Be             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/charlotte-foltz-jones/pdf-epub-mistakes-that-worked-40-familiar-inventions-and-how-they-came-to-be-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/charlotte-foltz-jones/pdf-epub-mistakes-that-worked-40-familiar-inventions-and-how-they-came-to-be-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "8") {
+			PrintCentered("The title:Scavengers(Diary of a 6th Grade Ninja, #7)            ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/marcus-emerson/pdf-epub-scavengers-diary-of-a-6th-grade-ninja-7-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/marcus-emerson/pdf-epub-scavengers-diary-of-a-6th-grade-ninja-7-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "9") {
+			PrintCentered("The title:How to See Fairies             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/charles-van-sandwyk/pdf-how-to-see-fairies-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/charles-van-sandwyk/pdf-how-to-see-fairies-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "10") {
+			PrintCentered("The title:Dear Pope Francis: The Pope Answers Letters from Children Around the World             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/pope-francis/pdf-dear-pope-francis-the-pope-answers-letters-from-children-around-the-world-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/pope-francis/pdf-dear-pope-francis-the-pope-answers-letters-from-children-around-the-world-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "11") {
+			PrintCentered("The title:Thief! by Malorie Blackman             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/malorie-blackman/pdf-epub-thief-by-malorie-blackman-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/malorie-blackman/pdf-epub-thief-by-malorie-blackman-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "12") {
+			PrintCentered("The title:Sierra Jensen Collection Volume 4: Books 10-12: Hold on Tight Closer Than Ever Take My Hand by Robin Jones Gunn (2007-02-10)             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/robin-jones-gunn/pdf-epub-sierra-jensen-collection-volume-4-books-10-12-hold-on-tight-closer-than-ever-take-my-hand-by-robin-jones-gunn-2007-02-10-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/robin-jones-gunn/pdf-epub-sierra-jensen-collection-volume-4-books-10-12-hold-on-tight-closer-than-ever-take-my-hand-by-robin-jones-gunn-2007-02-10-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "13") {
+			PrintCentered("The title:Rosa by Elaine Cunningham             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/elaine-cunningham/pdf-rosa-by-elaine-cunningham-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/elaine-cunningham/pdf-rosa-by-elaine-cunningham-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "14") {
+			PrintCentered("The title:The Tale of Mrs. Tiggy-Winkle (World of Beatrix Potter, #6)             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/beatrix-potter/pdf-epub-the-tale-of-mrs-tiggy-winkle-world-of-beatrix-potter-6-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << " https://oceanofpdf.com/authors/beatrix-potter/pdf-epub-the-tale-of-mrs-tiggy-winkle-world-of-beatrix-potter-6-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "15") {
+			PrintCentered("The title:Pastures Of The Blue Crane by Hesba Fay Brinsmead");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/hesba-fay-brinsmead/pdf-epub-pastures-of-the-blue-crane-by-hesba-fay-brinsmead-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/hesba-fay-brinsmead/pdf-epub-pastures-of-the-blue-crane-by-hesba-fay-brinsmead-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "16") {
+			PrintCentered("The title:An Evening at Alfie’s");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/shirley-hughes/pdf-an-evening-at-alfies-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/shirley-hughes/pdf-an-evening-at-alfies-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "17") {
+			PrintCentered("The title:Minnow on the Say ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/philippa-pearce/pdf-epub-minnow-on-the-say-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/philippa-pearce/pdf-epub-minnow-on-the-say-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "18") {
+			PrintCentered("The title:What Katy Did Next             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/susan-coolidge/pdf-epub-what-katy-did-next-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/susan-coolidge/pdf-epub-what-katy-did-next-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "19") {
+			PrintCentered("The title:In the High Valley");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/susan-coolidge/pdf-epub-in-the-high-valley-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << " https://oceanofpdf.com/authors/susan-coolidge/pdf-epub-in-the-high-valley-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "20") {
+			PrintCentered("The title:Pastures Of The Blue Crane by H.F. Brinsmead ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/h-f-brinsmead/pdf-epub-pastures-of-the-blue-crane-by-h-f-brinsmead-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/h-f-brinsmead/pdf-epub-pastures-of-the-blue-crane-by-h-f-brinsmead-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "21") {
+			PrintCentered("The title:Tim to the Rescue             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/edward-ardizzone/pdf-tim-to-the-rescue-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << " https://oceanofpdf.com/authors/edward-ardizzone/pdf-tim-to-the-rescue-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+
+
+
+
+	}
+	if (genre == "2") {
+		SetConsoleColor(4, 0); //This is to set the color of the text(0) and background(4)
+		system("cls");  //This makes sure that the background color is applied to the whole of the console and not just the background of the text.
+
+		PrintCentered("Available options of books for your picked genre is:");
+		PrintCentered("1.The Box Social and Other Stories  ");
+		PrintCentered("2.The title:La Cite des miroirs  ");
+		PrintCentered("3. Little Bones (Brennan and Esposito #1");
+		PrintCentered("4.  On the Devil’s Court");
+		PrintCentered("5. Polybius by Collin Armstrong ");
+		PrintCentered("6. Campfire Macabre ");
+		PrintCentered("7. A Conventional Boy (Laundry Files, #13; New Management, #4  ");
+		PrintCentered("8. The title:Les Douze (Le Passage, #2) ");
+		PrintCentered("9. The title:Le Passage");
+		PrintCentered("10.  Such Quiet Girls ");
+		PrintCentered("11. The Staircase in the Woods ");
+		PrintCentered("12. Julie Chan Is Dead  ");
+		PrintCentered("13. Senseless by Ronald Malfi ");
+		PrintCentered("14. The Navajo Nightmare ");
+		PrintCentered("15.The Mystery of Darkhill School: a scary mystery book for kids 9-12    ");
+		PrintCentered("16. The Darkening Globe  ");
+		PrintCentered("17. The Undesired");
+		PrintCentered("18. The Many Hauntings of the Manning Family     ");
+		PrintCentered("19.The Sundowner’s Dance  ");
+
+
+		PrintCentered("Pick a book from the list and write down the number");
+		string book;
+		cin >> book;
+		if (book == "1") {
+			PrintCentered("The title: The Box Social and Other Stories         ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/james-reaney/pdf-the-box-social-and-other-stories-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/james-reaney/pdf-the-box-social-and-other-stories-download/ ";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "2") {
+			PrintCentered("The title:La Cite des miroirs       ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/justin-cronin/pdf-epub-la-cite-des-miroirs-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << " https://oceanofpdf.com/authors/justin-cronin/pdf-epub-la-cite-des-miroirs-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "3") {
+			PrintCentered("The title:Little Bones (Brennan and Esposito #1    ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/tania-carver/pdf-epub-little-bones-brennan-and-esposito-1-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/tania-carver/pdf-epub-little-bones-brennan-and-esposito-1-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "4") {
+			PrintCentered("The title:  On the Devil’s Court ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/carl-deuker/pdf-on-the-devils-court-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/tania-carver/pdf-epub-little-bones-brennan-and-esposito-1-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "5") {
+			PrintCentered("The title: Polybius by Collin Armstrong ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/collin-armstrong/pdf-epub-polybius-by-collin-armstrong-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/collin-armstrong/pdf-epub-polybius-by-collin-armstrong-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "6") {
+			PrintCentered("The title:Campfire Macabre   ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/john-brhel/pdf-campfire-macabre-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/john-brhel/pdf-campfire-macabre-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "7") {
+			PrintCentered("The title:A Conventional Boy (Laundry Files, #13; New Management, #4    ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/charles-stross/pdf-epub-a-conventional-boy-laundry-files-13-new-management-4-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/charles-stross/pdf-epub-a-conventional-boy-laundry-files-13-new-management-4-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "8") {
+			PrintCentered("The title:Les Douze (Le Passage, #2) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("http://oceanofpdf.com/authors/justin-cronin/pdf-epub-les-douze-le-passage-2-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "http://oceanofpdf.com/authors/justin-cronin/pdf-epub-les-douze-le-passage-2-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "9") {
+			PrintCentered("The title:Le Passage  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/justin-cronin/pdf-epub-le-passage-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/justin-cronin/pdf-epub-le-passage-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+
+		if (book == "10") {
+			PrintCentered("The title:  Such Quiet Girls  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/noelle-w-ihli/pdf-epub-such-quiet-girls-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/noelle-w-ihli/pdf-epub-such-quiet-girls-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "11") {
+			PrintCentered("The title:The Staircase in the Woods  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/chuck-wendig/pdf-epub-the-staircase-in-the-woods-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/chuck-wendig/pdf-epub-the-staircase-in-the-woods-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "12") {
+			PrintCentered("The title:Julie Chan Is Dead  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/liann-zhang/pdf-epub-julie-chan-is-dead-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/liann-zhang/pdf-epub-julie-chan-is-dead-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "13") {
+			PrintCentered("The title:Senseless by Ronald Malfi   ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/ronald-malfi/pdf-epub-senseless-by-ronald-malfi-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/ronald-malfi/pdf-epub-senseless-by-ronald-malfi-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "14") {
+			PrintCentered("The title:The Navajo Nightmare   ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/david-sodergren/pdf-epub-the-navajo-nightmare-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/david-sodergren/pdf-epub-the-navajo-nightmare-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "15") {
+			PrintCentered("The title:The Mystery of Darkhill School: a scary mystery book for kids 9-12    ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/c-j-loughty/pdf-the-mystery-of-darkhill-school-a-scary-mystery-book-for-kids-9-12-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/c-j-loughty/pdf-the-mystery-of-darkhill-school-a-scary-mystery-book-for-kids-9-12-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "16") {
+			PrintCentered("The title:The Darkening Globe  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/naomi-kelsey/pdf-epub-the-darkening-globe-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/naomi-kelsey/pdf-epub-the-darkening-globe-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+
+		if (book == "17") {
+			PrintCentered("The title: The undesired            ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/yrsa-sigurdardottir/pdf-epub-the-undesired-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/yrsa-sigurdardottir/pdf-epub-the-undesired-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "18") {
+			PrintCentered("The title:The Many Hauntings of the Manning Family             ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/lorien-lawrence/pdf-epub-the-many-hauntings-of-the-manning-family-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/lorien-lawrence/pdf-epub-the-many-hauntings-of-the-manning-family-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}if (book == "19") {
+			PrintCentered("The title:The Sundowner’s Dance ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/todd-keisling/pdf-epub-the-sundowners-dance-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/todd-keisling/pdf-epub-the-sundowners-dance-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+
+
+
+
+
+	}
+	if (genre == "3") {
+
+		SetConsoleColor(5, 7); // This is to set the background color(5) and the text color(7)
+		system("cls");// This makes sure that the background color is applied to the whole of the console and not just limited to the background of the text
+
+		PrintCentered("Available options of books for your picked genre is:");
+		PrintCentered("1.Dark Breaks the Dawn (Dark Breaks the Dawn Duology, #1)");
+		PrintCentered("2.Tree of Aeons (Tree of Aeons, #1) ");
+		PrintCentered("3. A Throne from the Ashes ");
+		PrintCentered("4.Godsgraf (The Nevernight Chronicle, #2) ");
+		PrintCentered("5. A Flame of the Phoenix (An Heir Comes to Rise, #6)  ");
+		PrintCentered("6. Darkwell (Forgotten Realms: The Moonshae Trilogy, #3)  ");
+		PrintCentered("7.  Black Wizards (Forgotten Realms: The Moonshae Trilogy, #2)");
+		PrintCentered("8. Forged for Destiny ");
+		PrintCentered("9. The Raven Scholar (Eternal Path Trilogy #1) ");
+		PrintCentered("10.A Brief History of Chronomancy (Arcane Ascension, #6)   ");
+		PrintCentered("11.The Ashfire King (The Sandsea Trilogy, #2)");
+		PrintCentered("12. The Price of Power (Dreams of Dust and Steel, #1)");
+
+		PrintCentered("Pick a book from the list and write down the number");
+		string book;
+		cin >> book;
+		if (book == "1") {
+			PrintCentered("The title:Dark Breaks the Dawn (Dark Breaks the Dawn Duology, #1) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/sara-b-larson/pdf-epub-dark-breaks-the-dawn-dark-breaks-the-dawn-duology-1-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/sara-b-larson/pdf-epub-dark-breaks-the-dawn-dark-breaks-the-dawn-duology-1-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+
+		}
+		if (book == "2") {
+			PrintCentered("The title: Tree of Aeons (Tree of Aeons, #1) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/spaizzzer/pdf-epub-tree-of-aeons-tree-of-aeons-1-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/spaizzzer/pdf-epub-tree-of-aeons-tree-of-aeons-1-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+
+		}
+		if (book == "3") {
+			PrintCentered("The title: A Throne from the Ashes ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/c-c-penaranda/pdf-epub-a-throne-from-the-ashes-download/");
+
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved" << endl;
+				link << "https://oceanofpdf.com/authors/c-c-penaranda/pdf-epub-a-throne-from-the-ashes-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "4") {
+			PrintCentered("The title: Godsgraf (The Nevernight Chronicle, #2) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/jay-kristoff/pdf-epub-godsgraf-the-nevernight-chronicle-2-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/jay-kristoff/pdf-epub-godsgraf-the-nevernight-chronicle-2-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "5") {
+			PrintCentered("The title:A Flame of the Phoenix (An Heir Comes to Rise, #6) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/chloe-c-penaranda/pdf-epub-a-flame-of-the-phoenix-an-heir-comes-to-rise-6-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/chloe-c-penaranda/pdf-epub-a-flame-of-the-phoenix-an-heir-comes-to-rise-6-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "6") {
+			PrintCentered("The title:Darkwell (Forgotten Realms: The Moonshae Trilogy, #3)  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/douglas-niles/pdf-epub-darkwell-forgotten-realms-the-moonshae-trilogy-3-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/douglas-niles/pdf-epub-darkwell-forgotten-realms-the-moonshae-trilogy-3-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "7") {
+			PrintCentered("The title: Black Wizards (Forgotten Realms: The Moonshae Trilogy, #2) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/douglas-niles/pdf-epub-black-wizards-forgotten-realms-the-moonshae-trilogy-2-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/douglas-niles/pdf-epub-black-wizards-forgotten-realms-the-moonshae-trilogy-2-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "8") {
+			PrintCentered("The title:Forged for Destiny ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/andrew-knighton/pdf-epub-forged-for-destiny-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/andrew-knighton/pdf-epub-forged-for-destiny-download/";
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "9") {
+			PrintCentered("The title: The Raven Scholar (Eternal Path Trilogy #1)  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/antonia-hodgson/pdf-epub-the-raven-scholar-eternal-path-trilogy-1-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/antonia-hodgson/pdf-epub-the-raven-scholar-eternal-path-trilogy-1-download/";
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "10") {
+			PrintCentered("The title:A Brief History of Chronomancy (Arcane Ascension, #6)  ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/andrew-rowe/pdf-epub-a-brief-history-of-chronomancy-arcane-ascension-6-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/andrew-rowe/pdf-epub-a-brief-history-of-chronomancy-arcane-ascension-6-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "11") {
+			PrintCentered("The title: The Ashfire King (The Sandsea Trilogy, #2) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/chelsea-abdullah/pdf-epub-the-ashfire-king-the-sandsea-trilogy-2-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/chelsea-abdullah/pdf-epub-the-ashfire-king-the-sandsea-trilogy-2-download/";
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+		if (book == "12") {
+			PrintCentered("The title:The Price of Power (Dreams of Dust and Steel, #1) ");
+			PrintCentered("Copy and paste the link in a url if you want to download a copy.");
+			PrintCentered("https://oceanofpdf.com/authors/michael-michel/pdf-epub-the-price-of-power-dreams-of-dust-and-steel-1-download/");
+			fstream link;
+			link.open("link.txt", ios::out);
+			if (link.is_open()) {
+				cout << "link is saved in file called link.txt" << endl;
+				link << "https://oceanofpdf.com/authors/michael-michel/pdf-epub-the-price-of-power-dreams-of-dust-and-steel-1-download/";
+
+			}
+			else {
+				cout << "Link is not saved";
+			}
+		}
+
+
+
+	}
+
+}
+
+int create() {
+	//This function is for creating a book account.
+	//Here a user enters the inforamtion about any other additional book they would like to make a pat of their booklist.
+	//The information includes the book name,author name,genr name and link to the file
+	SetConsoleColor(7, 1); //This is to apply the ackground color(7) and the text color(1)
+	system("cls");
+	string name;
+	string author;
+	string genre;
+	string link;
+	cout << "----------------------------------------------------------------------------------------------------" << endl;
+	cout << "Welcome to your book account. Here you can enter additional books and their related info." << endl;
+	cout << "--------------------------------------------------------------------------------------------------------" << endl;
+	cout << "Enter book name" << endl;
+	cin >> name;
+	cout << "enter author of book" << endl;
+	cin >> author;
+	cout << "Enter genre of the book: ";
+	cin >> genre;
+
+	cout << "Enter link to the PDF of the book: ";
+	cin >> link;
+
+	fstream account;
+	account.open("BOOK ACCOUNT.txt", ios::out); //output for writing
+	//File handling is used to create/write the entries of the book acconut, this way all the entries are saved are in a text file
+	//The text file is called BOOK ACCOUNT.txt
+
+	if (account.is_open()) {
+		account << "The name of the book:" << name << endl;
+		account << "The name of the author:" << author << endl;
+		account << "Genre of the book: " << genre << endl;
+		account << "Link to the pdf of the book: " << link << endl;
+		account << "------------------------" << endl;
+
+		account.close();
+		cout << "Your info is saved in a text file labelled BOOK ACCOUNT" << endl;
+		return 0;
+	}
+	else {
+		cout << "Error: File could not be opened." << endl;
+		return 0;
+	}
+}
+
+void read() {
+	//This function is for the read feature of the library program,
+	//All the data that was entered when creating the book account will be displayed back to the user.
+	SetConsoleColor(7, 1); //This is for applying background color and text color
+	system("cls"); //And this is to make sure that the background color is applied to the whole of the console and not just the background of the text.
+	fstream account;
+	account.open("BOOK ACCOUNT.txt", ios::in); // Open for reading
+
+	if (account.is_open()) {
+		string line;  //to take in everyline from the text file, account.
+		cout << "---- Saved Books ----" << endl;
+
+		while (getline(account, line)) {   //take in lines from  the text file account
+			cout << line << endl;
+		}
+		account.close();
+	}
+	else {
+		cout << "Error: Unable to open the file for reading. It may have been opened before or wasnt saved correctly" << endl;
+	}
+}
+
+
+
+int updateaccount() {
+	//This function is for the update feature of the program where the contents of the book account entered by the user before hand
+	// are updated
+	SetConsoleColor(7, 1); //This is for applying background color(7) and text color(1)
+	system("cls"); //This makes sure that the background color is applied to the whole of the console and not just the background of the text
+	string nameofbook;
+	string author;
+	string genre;
+	string link;
+
+	cout << "Enter book name: " << endl;
+	cin >> nameofbook;//Enter the name of the book
+
+	cout << "Enter author name: " << endl;
+	cin >> author;  //Enter the name of the author
+
+	cout << "Enter genre of the book: " << endl;
+	cin >> genre;  //Enter the genre of the book
+
+	cout << "Enter link to the PDF of the book: ";
+	cin >> link;  //Enter the link to the pdf of the book
+
+
+	fstream account;  //I used file handling the store the updated information into the same BOOK ACCOUNT txt file
+	account.open("BOOK ACCOUNT", ios::app); //The mode used is ios::app this causes the the updated content to continue after/
+	//The previously entered content
+	if (account.is_open()) {  //Checking if the file is open
+		account << "---------Updated account------" << endl;
+		account << "Book: " << nameofbook << endl;                   //All of the content entered is now saved to the text file 
+		account << "Author: " << author << endl;
+		account << "Genre: " << genre << endl;
+		account << "Link: " << link << endl;
+		account << "------------------------" << endl;
+
+		account.close();
+		cout << "Your info is saved in a text file labelled 'BOOK ACCOUNT.txt'" << endl;
+		return 0;
+	}
+	else {
+		cout << "Error: File could not be opened." << endl;
+		return 0;
+	}
+}
+
+
+
+
+
+
+void deleteaccount() {          // This function is for deleting the content of the book account.
+	fstream acc;
+	acc.open("BOOK ACCOUNT.txt", ios::trunc | ios::out);  // the mode used is ios trunc(for deleting the content) and ios out for displaying the deleted content
+	if (acc.is_open()) {
+		cout << "Your file has been deleted" << endl;
+		cout << "The contents of your file have been deleted, thank you for using my program come again later" << endl;
+	}
+	else {
+		cout << "Your file has already been deleted or there are some complications with the program" << endl;
+	}
+}
+
+void deleteBooksFromGenre1() {  //Now this function is  for the delete feature that individually deletes the books of booklist of a individual genre
+	// Arrays are being used for this purpose
+	string genre1[21] = {  //Declaring array of books of genre1
+		"1.Fires Burning Underground", "2.Tori and the Muses", "3.Why Not, Lafayette?",
+		"4.Winter Turning (Wings of Fire Graphic Novel, #7)", "5.Salt in His Shoes",
+		"6.Thanks for the Feedback", "7.Mistakes That Worked", "8.Scavengers",
+		"9.How to See Fairies", "10.Dear Pope Francis", "11.Thief! by Malorie Blackman",
+		"12.Sierra Jensen Collection Volume 4", "13.Rosa by Elaine Cunningham",
+		"14.The Tale of Mrs. Tiggy-Winkle", "15.Pastures Of The Blue Crane",
+		"16.An Evening at Alfie’s", "17.Minnow on the Say", "18.What Katy Did Next",
+		"19.In the High Valley", "20.Pastures Of The Blue Crane by H.F.Brinsmead",
+		"21.Tim to the Rescue"
+	};
+
+	cout << "Genre: Classical/Children Book List:\n";
+	for (int i = 0; i < 21; i++) { //Displaying the books in the array
+		cout << i + 1 << ". " << genre1[i] << endl;  //+1 as the arrays memory index starts at zero
+	}
+
+	int booknum;
+	cout << "Enter the number of the book to delete: ";   //Asking the users to add the number(according to the booklist) of the book to delete
+	cin >> booknum;
+
+	if (booknum < 1 || booknum > 21) {  //Condiiton that the entered number must be within the appropiate limit
+		cout << "Invalid book number.\n";
+	}
+	else {
+		genre1[booknum - 1] = "[Deleted]";
+		cout << "Book deleted successfully.\n";
+	}
+
+	cout << "\nUpdated list:\n"; //Display the updated list
+	for (int i = 0; i < 21; i++) {
+		cout << i + 1 << ". " << genre1[i] << endl;
+	}
+}
+
+// Genre 2 books
+void deleteBooksFromGenre2() { //This function is for deleting books from the booklist of genre 2
+	string genre2[19] = {  //Creating an array for the books of genre 2
+		"1.The Box Social", "2.La Cite des miroirs", "3.Little Bones",
+		"4.On the Devil’s Court", "5.Polybius", "6.Campfire Macabre",
+		"7.A Conventional Boy", "8.Les Douze", "9.Le Passage", "10.Such Quiet Girls",
+		"11.The Staircase in the Woods", "12.Julie Chan Is Dead", "13.Senseless",
+		"14.The Navajo Nightmare", "15.The Mystery of Darkhill School",
+		"16.The Darkening Globe", "17.The Undesired",
+		"18.The Many Hauntings of the Manning Family", "19.The Sundowner’s Dance"
+	};
+
+	cout << "Genre: Horror/Thriller Book List:\n";       //Display the array the of the books from the second genre
+	for (int i = 0; i < 19; i++) {
+		cout << i + 1 << ". " << genre2[i] << endl;
+	}
+
+	int booknum;
+	cout << "Enter the number of the book to delete: ";  //Asks the user to eter the booknumber from the list
+	cin >> booknum;
+
+	if (booknum < 1 || booknum > 19) {
+		cout << "Invalid book number.\n";  //Condition that the book must be with the appropiate limit
+	}
+	else {
+		genre2[booknum - 1] = "[Deleted]";
+		cout << "Book deleted successfully.\n";
+	}
+
+	cout << "\nUpdated list:\n";   //Display the updated list of the book
+	for (int i = 0; i < 19; i++) {
+		cout << i + 1 << ". " << genre2[i] << endl;
+	}
+	fstream updatedbooklist{};
+
+
+
+}
+
+// Genre 3 books
+void deleteBooksFromGenre3() {   //This function is for deleting the books from the third genre's booklist
+	string genre3[12] = {  //Array of the books of the third genre
+		"1.Dark Breaks the Dawn", "2.Tree of Aeons", "3.A Throne from the Ashes",
+		"4.Godsgraf", "5.A Flame of the Phoenix", "6.Darkwell", "7.Black Wizards",
+		"8.Forged for Destiny", "9.The Raven Scholar", "10.Chronomancy",
+		"11.The Ashfire King", "12.The Price of Power"
+	};
+
+	cout << "Genre: Romance/YA Fantasy Book List:\n"; //Dispaly theboks from the array
+	for (int i = 0; i < 12; i++) {
+		cout << i + 1 << ". " << genre3[i] << endl;
+	}
+
+	int booknum;
+	cout << "Enter the number of the book to delete: ";  //Ask the user to enter number of the book they wish to delete
+	cin >> booknum;
+
+	if (booknum < 1 || booknum > 12) {   //Setting a condition to enter the appropiate number of the book you wish to delete
+		cout << "Invalid book number.\n";
+	}
+	else {
+		genre3[booknum - 1] = "[Deleted]";
+		cout << "Book deleted successfully.\n";
+	}
+
+	cout << "\nUpdated list:\n";   //Display the updated list that has the deleted book mentioned
+	for (int i = 0; i < 12; i++) {
+		cout << i + 1 << ". " << genre3[i] << endl;
+	}
+}
+
+
+
+
+int main() {
+	char createacc = 0;
+	char again = 0;
+	char readacc = 0;
+	char updateacc = 0;
+	char deleteacc = 0;
+	string times;
+	SetConsoleColor(8, 15);   //This is for seeing the background color and text color(the defualt grey one)
+	system("cls");  //This is for making sure that hte background color is applied to the console as  a while and not just the background
+
+
+
+	do {   //Withing the do while loop summon the functions greeting,pick and choice
+		Greeting();
+		Pick();
+		Choice();
+		cout << "Would you like to veiw the books again?" << "Type yes or no" << endl;
+		cin >> times;
+	} while (times == "yes" || times == "Yes" || times == "YES");  //The loop is executed at least once after which the user is asked to enter 
+	//if they would like to repeat the procdeure of picking a book 
+
+
+
+	string deletepick;
+	int genrenum = 0;
+
+	cout << "Would you like to delete any of the books from the genre? (yes/no): " << endl;
+	cin >> deletepick;//Ask the user if they would like to delete any book from the list
+
+	char del;
+	if (deletepick == "yes" || deletepick == "YES" || deletepick == "Yes") {  //using the if condition,depending on the response 
+		//the user then enters the number of the genre they wish to delete the book from
+		cout << "Enter the number of the genre you wish to delete from:" << endl;
+		cout << "1. Classical/Childrens" << endl;
+		cout << "2. Horror/Thriller" << endl;
+		cout << "3. Romance/YA Fantasy" << endl;
+		cout << "Your choice: " << endl;
+		cin >> genrenum;
+
+		switch (genrenum) { //Using switch to function call the appropiate function depending on the users choice
+		case 1:
+
+			deleteBooksFromGenre1();
+
+
+
+			break;
+		case 2:
+
+			deleteBooksFromGenre2();
+
+			break;
+		case 3:
+
+			deleteBooksFromGenre3();
+
+			break;
+		default:
+			cout << "Invalid genre number.\n";
+		}
+	}
+	else {
+		cout << "Okay! Proceeding to book account.\n";
+		exit;
+	}
+
+	//Ask the user to permisiion to start their own book account
+	cout << "Would you like to start your own book acount? This will enable you to create a text file with your preferred books," << endl;
+	cout << "Press Y to create or N to exit the program" << endl;
+	cout << "Enter your choice" << endl;
+	cin >> createacc;
+	if (createacc == 'Y') {
+		create(); //function call to create the book account
+		cout << "Would you like to read the contents of your account?" << endl;  //Ask user permision to read the account
+		cout << "Enter Y or N" << endl;
+		cin >> readacc;
+		if (readacc == 'Y') {
+
+			read(); //function call to read the book account contents
+		}
+		else {
+			cout << "oh alright" << endl;
+		}
+
+		cout << "Would you like update the contents of your bookaccount?" << endl; //ask user the update the contents of the account
+		cout << "Enter Y or N" << endl;
+		cin >> updateacc;
+		if (updateacc == 'Y') {
+
+			updateaccount();//function call to update the account
+		}
+		else {
+			cout << "oh alright" << endl;
+
+		}
+
+		cout << "Would you like to delete your book account?" << endl; //ask the user to delete the account file
+		cout << "Enter Y or N" << endl;
+		cin >> deleteacc;
+		if (deleteacc == 'Y') {
+			deleteaccount(); //function call to delete the account
+		}
+		else {
+			cout << "Thank you for using my library" << endl;
+		}
+
+
+
+	}
+	else {
+		cout << "Thank you for using my library" << endl;//End of the program.
+	}
+
+
+
+
+
+
+}
+
+
